@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class Turret : MonoBehaviour
+public class tower : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private LayerMask enemyMask;
@@ -12,7 +12,7 @@ public class Turret : MonoBehaviour
 
     [Header("Attribute")]
     [SerializeField] private float targetingRange = 5f;
-    
+
     [SerializeField] private float bps = 1f;
 
     private Transform target;
@@ -35,7 +35,7 @@ public class Turret : MonoBehaviour
         {
             timeuntilfire += Time.deltaTime;
 
-            if (timeuntilfire >= 1f/ bps) 
+            if (timeuntilfire >= 1f/ bps)
             {
                 shoot();
                 timeuntilfire = 0f;
@@ -43,10 +43,10 @@ public class Turret : MonoBehaviour
         }
 
     }
-    private void shoot() 
+    private void shoot()
     {
-        GameObject bulletObj = Instantiate(bulletprefab, firingpoint.position,Quaternion.identity) ;
-        bullet bulletScript = bulletObj.GetComponent<bullet>(); 
+        GameObject bulletObj = Instantiate(bulletprefab, firingpoint.position, Quaternion.identity);
+        bullet bulletScript = bulletObj.GetComponent<bullet>();
         bulletScript.SetTarget(target);
 
     }
@@ -76,3 +76,4 @@ public class Turret : MonoBehaviour
 
     }
 }
+
