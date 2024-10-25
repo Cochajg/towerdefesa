@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed = 2f;
     private Transform target;
-    private int pathIndex = 0;
+    [SerializeField] private int pathIndex = 0;
     private float baseSpeed;
     // Start is called before the first frame update
     private void Start()
@@ -24,7 +24,7 @@ public class EnemyMovement : MonoBehaviour
         {
             pathIndex++;
 
-            if (pathIndex == LevelManager.instance.path.Length)
+            if (pathIndex == LevelManager.instance.path.Length || pathIndex==14)
             {
                 EnemySpawner.onEnemyDestroy.Invoke();
                 Destroy(gameObject);
