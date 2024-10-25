@@ -1,79 +1,115 @@
 using System.Collections;
+
 using System.Collections.Generic;
+
+using UnityEditor.Experimental.GraphView;
+
 using UnityEngine;
-using UnityEditor;
 
-public class tower : MonoBehaviour
+public class Turret : MonoBehaviour, Iatacavel
+
 {
-    [Header("References")]
-    [SerializeField] private LayerMask enemyMask;
-    [SerializeField] private GameObject bulletprefab;
-    [SerializeField] private Transform firingpoint;
 
-    [Header("Attribute")]
-    [SerializeField] private float targetingRange = 5f;
+    [SerializeField] protected float targetingRange = 5f;
+
+    [SerializeField] protected LayerMask enemyMask;
+
+    [SerializeField] protected GameObject bulletPrefab;
+
+    [SerializeField] protected Transform firingPoint;
 
     [SerializeField] private float bps = 1f;
 
-    private Transform target;
-    private float timeuntilfire;
+    protected Transform target;
+
+    protected float timeUntilFire;
+
+
+    public virtual void Atacar()
+
+    {
+
+    }
+
+    // Update is called once per frame
 
     private void Update()
-    {
-        if (target == null)
-        {
-            FindTarget();
-            return;
-        }
 
+    {
+
+        if (target == null)
+
+        {
+
+            FindTarget();
+
+            return;
+
+        }
 
         if (!CheckTargetIsInRange())
-        {
-            target = null;
-        }
-        else
-        {
-            timeuntilfire += Time.deltaTime;
 
-            if (timeuntilfire >= 1f/ bps)
+        {
+
+            target = null;
+
+        }
+
+        else
+
+        {
+
+            timeUntilFire += Time.deltaTime;
+
+            if (timeUntilFire >= 1f / bps)
+
             {
-                shoot();
-                timeuntilfire = 0f;
+
+                Shoot();
+
+                timeUntilFire = 0f;
+
             }
+
         }
 
     }
-    private void shoot()
+
+    protected virtual void Shoot()
+
     {
-        GameObject bulletObj = Instantiate(bulletprefab, firingpoint.position, Quaternion.identity);
+
+        GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
+
         bullet bulletScript = bulletObj.GetComponent<bullet>();
+
         bulletScript.SetTarget(target);
 
     }
 
-    private void FindTarget()
+    private bool CheckTargetIsInRange()
+
     {
+
+        return Vector2.Distance(target.position, transform.position) <= targetingRange;
+
+    }
+
+    private void FindTarget()
+
+    {
+
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targetingRange, (Vector2)transform.position, 0f, enemyMask);
 
         if (hits.Length > 0)
+
         {
+
             target = hits[0].transform;
+
         }
-    }
-
-    private bool CheckTargetIsInRange()
-    {
-        return Vector2.Distance(target.position, transform.position) <= targetingRange;
-    }
-
-
-
-    private void OnDrawGizmosSelected()
-    {
-
-        Handles.color = Color.cyan;
-        Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
 
     }
+
 }
 

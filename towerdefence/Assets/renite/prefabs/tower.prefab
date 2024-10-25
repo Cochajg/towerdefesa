@@ -129,10 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ebb418926ad40439308473d767757d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetingRange: 5
   enemyMask:
     serializedVersion: 2
     m_Bits: 8
-  bulletprefab: {fileID: 8711197368922514679, guid: 4ae4dce35cacb494ab7b55c42795b203, type: 3}
-  firingpoint: {fileID: 6845080058100505571}
-  targetingRange: 5
+  bulletPrefab: {fileID: 8711197368922514679, guid: 4ae4dce35cacb494ab7b55c42795b203, type: 3}
+  firingPoint: {fileID: 6845080058100505571}
   bps: 5

@@ -41,9 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3253777890826914379}
   - component: {fileID: 713492900380010253}
-  - component: {fileID: 3220237479677281122}
+  - component: {fileID: -3084913627267201334}
   m_Layer: 0
-  m_Name: text turent
+  m_Name: Slow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.85877466, g: 1, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.9806142, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -117,7 +117,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3220237479677281122
+--- !u!114 &-3084913627267201334
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,13 +126,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2477381760161143464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91ebb418926ad40439308473d767757d, type: 3}
+  m_Script: {fileID: 11500000, guid: 553989f153e6f7245b3a3d1f8f24424c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetingRange: 5
   enemyMask:
     serializedVersion: 2
     m_Bits: 8
-  bulletprefab: {fileID: 8711197368922514679, guid: 4ae4dce35cacb494ab7b55c42795b203, type: 3}
-  firingpoint: {fileID: 6845080058100505571}
-  targetingRange: 5
-  bps: 0.5
+  bulletPrefab: {fileID: 8711197368922514679, guid: 4ae4dce35cacb494ab7b55c42795b203, type: 3}
+  firingPoint: {fileID: 6845080058100505571}
+  bps: 1
+  aps: 4
+  FreezeTime: 1
