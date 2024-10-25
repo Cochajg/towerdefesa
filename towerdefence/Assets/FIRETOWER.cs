@@ -13,7 +13,7 @@ public class TurretFire : Turret // Classe especializada de torre que aplica dan
     {
         if (target != null) // Verifica se há um alvo designado
         {
-            health enemyHealth = target.GetComponent<health>(); // Obtém o componente de saúde do inimigo
+            Health enemyHealth = target.GetComponent<Health>(); // Obtém o componente de saúde do inimigo
 
             if (enemyHealth != null) // Verifica se o inimigo possui o componente de saúde
             {
@@ -23,13 +23,13 @@ public class TurretFire : Turret // Classe especializada de torre que aplica dan
     }
 
     // Coroutine que aplica o dano de queimadura ao longo do tempo
-    private IEnumerator ApplyBurnDamage(health enemyHealth)
+    private IEnumerator ApplyBurnDamage(Health enemyHealth)
     {
         float elapsedTime = 0f; // Tempo decorrido desde o início do efeito de queimadura
 
         while (elapsedTime < burnDuration) // Continua aplicando dano até o fim da duração da queimadura
         {
-            enemyHealth.takedamaga(burnDamagePerSecond * Time.deltaTime); // Aplica dano ao inimigo a cada frame
+            enemyHealth.TakeDamage(burnDamagePerSecond * Time.deltaTime); // Aplica dano ao inimigo a cada frame
             elapsedTime += Time.deltaTime; // Atualiza o tempo decorrido
             yield return null; // Espera até o próximo frame para continuar
         }
@@ -39,7 +39,7 @@ public class TurretFire : Turret // Classe especializada de torre que aplica dan
     protected override void Shoot()
     {
         GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity); // Instancia um projétil na posição de disparo
-        bullet bulletScript = bulletObj.GetComponent<bullet>(); // Obtém o script do projétil
+        Bullet bulletScript = bulletObj.GetComponent<Bullet>(); // Obtém o script do projétil
         bulletScript.SetTarget(target); // Define o alvo do projétil
         Atacar(); // Aplica o ataque (efeito de queimadura) ao inimigo
     }

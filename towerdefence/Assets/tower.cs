@@ -77,7 +77,7 @@ public class Turret : MonoBehaviour, Iatacavel
 
         GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
 
-        bullet bulletScript = bulletObj.GetComponent<bullet>();
+        Bullet bulletScript = bulletObj.GetComponent<Bullet>();
 
         bulletScript.SetTarget(target);
 

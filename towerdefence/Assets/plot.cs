@@ -38,7 +38,7 @@ public class Plot : MonoBehaviour // Classe que representa um ponto de construçã
     {
         if (tower != null) return; // Se já houver uma torre, não faz nada
 
-        Tower towerToBuild = Buding.instance.GetSelectedTower(); // Obtém a torre selecionada para construir
+        Tower towerToBuild = Building.instance.GetSelectedTower(); // Obtém a torre selecionada para construir
 
         if (towerToBuild.cost > LevelManager.instance.currency) // Verifica se o jogador tem dinheiro suficiente
         {
