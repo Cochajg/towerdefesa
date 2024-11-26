@@ -1,17 +1,23 @@
-using TMPro;  // Biblioteca necessária para usar o TextMeshPro, que permite textos mais personalizados e de alta qualidade
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class YourClass : MonoBehaviour // Classe que gerencia a interface de moeda e o menu do jogo
+public class Menu : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI currencyUI; // Referência ao elemento UI de texto para exibir a moeda, configurado no editor
-    [SerializeField] private Animator anim; // Referência ao componente Animator para controlar animações de interface
+    [Header("References")]
+    [SerializeField] private TextMeshProUGUI currencyUI; // Referência ao componente TextMeshPro que exibe a quantidade de moeda
 
-    private bool isMenuOpen = true; // Variável para controlar o estado de abertura do menu
 
-    // Método que alterna o estado do menu entre aberto e fechado
-    public void ToggleMenu()
+
+
+
+    // Método chamado para atualizar o UI (User Interface)
+    private void OnGUI()
     {
-        isMenuOpen = !isMenuOpen; // Inverte o valor atual de isMenuOpen
-        anim.SetBool("menuOpen", isMenuOpen); // Atualiza o parâmetro "menuOpen" no Animator com o novo estado do menu
+        // Atualiza o texto da moeda no menu com a quantidade atual
+        currencyUI.text = LevelManager.instance.currency.ToString();
     }
+
+
 }

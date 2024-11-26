@@ -79,7 +79,7 @@ public class EnemySpawner : MonoBehaviour // Classe responsável por gerar inimig
         int index = Random.Range(0, enemyPrefabs.Length); // Seleciona um prefab aleatório de inimigo
         GameObject prefabToSpawn = enemyPrefabs[index]; // Armazena o prefab selecionado
         // Instancia o inimigo no ponto de início do nível
-        Instantiate(prefabToSpawn, LevelManager.instance.startpoint.position, Quaternion.identity);
+        Instantiate(prefabToSpawn, LevelManager.instance.startPoint.position, Quaternion.identity);
     }
 
     // Calcula o número de inimigos a serem gerados na onda atual com base na dificuldade
@@ -88,7 +88,7 @@ public class EnemySpawner : MonoBehaviour // Classe responsável por gerar inimig
         return Mathf.RoundToInt(baseEnemies * Mathf.Pow(currentWave, difficultyScalingFactor)); // Retorna um número inteiro baseado na dificuldade
     }
 
-    // Calcula quantos inimigos podem ser gerados por segundo com base na dificuldade
+    // Calcula quantos inimigos podem ser gerados por segundo com base na dificuldade   
     private float EnemiesPerSecond()
     {
         // Retorna a quantidade de inimigos por segundo limitada pelo cap

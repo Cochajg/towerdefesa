@@ -2,42 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour // Classe responsável pelo gerenciamento do nível do jogo
+public class LevelManager : MonoBehaviour
 {
-    public static LevelManager instance; // Instância única da classe LevelManager (singleton)
-    public Transform startpoint; // Ponto inicial onde os inimigos aparecem
-    public Transform[] path; // Array que contém os pontos do caminho que os inimigos seguem
+    public static LevelManager instance;
+    public Transform[] path;
+    public bool isGameOver = false;
+    public GameObject gameOverPanel;
+    public Transform startPoint;
 
-    public int currency; // Quantidade de moeda disponível para o jogador
+    public int currency;
 
     private void Awake()
     {
-        instance = this; // Atribui a instância atual à variável estática
+        instance = this;
     }
 
     private void Start()
     {
-        currency = 100; // Inicializa a quantidade de moeda com 100 no início do jogo
+        currency = 100;
     }
 
-    // Método para aumentar a quantidade de moeda
     public void IncreaseCurrency(int amount)
     {
-        currency += amount; // Adiciona a quantidade especificada à moeda atual
+        currency += amount;
     }
 
-    // Método para gastar uma quantidade de moeda
     public bool SpendCurrency(int amount)
     {
-        // Verifica se há moeda suficiente para gastar
         if (amount <= currency)
         {
-            currency -= amount; // Deduz a quantidade especificada da moeda atual
-            return true; // Retorna verdadeiro se a transação foi bem-sucedida
+            currency -= amount;
+            return true;
         }
         else
         {
-            return false; // Retorna falso se não houver moeda suficiente
+            return false;
         }
+    }
+
+    // Método para adicionar 100 moedas como recompensa
+    public void RewardCurrency()
+    {
+        IncreaseCurrency(100);
+    }
+    public void Reiniciar()
+    {
+        gameOverPanel.SetActive(false);
+        Time.timeScale = 1;
+        isGameOver=false;
+
     }
 }

@@ -22,7 +22,6 @@ public class Turret : MonoBehaviour, Iatacavel
 
 
     public virtual void Atacar()
-
     {
 
     }
