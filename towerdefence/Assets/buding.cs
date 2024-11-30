@@ -2,38 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class buding : MonoBehaviour
+public class Building : MonoBehaviour // Classe que gerencia a seleção e configuração das torres no jogo
 {
+    public static Building instance; // Instância estática da classe para permitir acesso global à seleção de torres
+    [SerializeField] private Tower[] towers; // Array de torres disponíveis para seleção, configurado no editor
 
-    public static buding instance;
-    [SerializeField] private Tower[] towers;
-  
+    private int selectedTower = 0; // Índice da torre selecionada atualmente
 
-
-    private int SelectedTower=0;
+    // Retorna a torre atualmente selecionada
     public Tower GetSelectedTower()
     {
-        return towers[SelectedTower];
+        return towers[selectedTower];
     }
-    public void SetSelectedTower(int _SelectedTower)
+
+    // Define a torre selecionada, recebendo o índice da torre
+    public void SetSelectedTower(int _selectedTower)
     {
-        SelectedTower = _SelectedTower;
+        selectedTower = _selectedTower;
     }
+
+    // Chamado ao inicializar o objeto, define a instância única da classe
     private void Awake()
     {
         instance = this;
-
     }
-    // Start is called before the first frame update
+
+   
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
-        
+       
     }
-
 }

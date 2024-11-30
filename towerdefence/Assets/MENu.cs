@@ -1,16 +1,23 @@
-using TMPro;  // Certifique-se de incluir essa linha para usar TextMeshPro
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class YourClass : MonoBehaviour
+public class Menu : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI currencyUI;
-    [SerializeField] Animator anim;
+    [Header("References")]
+    [SerializeField] private TextMeshProUGUI currencyUI; // Referência ao componente TextMeshPro que exibe a quantidade de moeda
 
-    private bool isMenuOpen = true;
 
-    public void ToggleMenu()
+
+
+
+    // Método chamado para atualizar o UI (User Interface)
+    private void OnGUI()
     {
-        isMenuOpen = !isMenuOpen;
-        anim.SetBool("menuOpen", isMenuOpen);  // Corrigido "SetBool" e variável correta
+        // Atualiza o texto da moeda no menu com a quantidade atual
+        currencyUI.text = LevelManager.instance.currency.ToString();
     }
+
+
 }
