@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class EnemySpawner : MonoBehaviour // Classe responsável por gerar inimigos no jogo
 {
-    [SerializeField] private GameObject[] enemyPrefabs; // Array de prefabs de inimigos que podem ser gerados
+    [SerializeField] private List<GameObject> enemyPrefabs = new List<GameObject>(); // Array de prefabs de inimigos que podem ser gerados
     [SerializeField] private int baseEnemies = 8; // Número base de inimigos por onda
     [SerializeField] private float enemiesPerSecond = 0.5f; // Taxa de inimigos a serem gerados por segundo
     [SerializeField] private float timeBetweenWaves = 5f; // Tempo entre ondas de inimigos
@@ -76,10 +76,17 @@ public class EnemySpawner : MonoBehaviour // Classe responsável por gerar inimig
 
     private void SpawnEnemy()
     {
-        int index = Random.Range(0, enemyPrefabs.Length); // Seleciona um prefab aleatório de inimigo
-        GameObject prefabToSpawn = enemyPrefabs[index]; // Armazena o prefab selecionado
-        // Instancia o inimigo no ponto de início do nível
-        Instantiate(prefabToSpawn, LevelManager.instance.startPoint.position, Quaternion.identity);
+        // Verifica se a lista de prefabs não está vazia
+        if (enemyPrefabs.Count == 0)
+        {
+            Debug.LogWarning("A lista de prefabs de inimigos está vazia!"); // Log de aviso
+            return; // Sai do método se não houver prefabs
+        }
+
+        // Seleciona um prefab aleatório da lista
+        GameObject prefabParaSpawnar = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
+        // Instancia o inimigo na posição de início definida pelo LevelManager
+        _ = Instantiate(prefabParaSpawnar, LevelManager.instance.startPoint.position, Quaternion.identity);
     }
 
     // Calcula o número de inimigos a serem gerados na onda atual com base na dificuldade

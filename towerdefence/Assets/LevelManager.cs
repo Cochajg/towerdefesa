@@ -16,6 +16,21 @@ public class LevelManager : MonoBehaviour
     {
         instance = this;
     }
+    public void GameOver()
+    {
+        if (isGameOver) return; // Evita que o Game Over seja chamado várias vezes
+
+        isGameOver = true; // Marca que o jogo terminou
+        Debug.Log("Game Over! Um inimigo alcançou o ponto final.");
+
+        // Exibe o painel de Game Over
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0;
+        if (!AdManager.instance.isGamePausedByAd)
+        {
+            Time.timeScale = 0; // Apenas pausa o jogo se não estiver pausado por um anúncio
+        }
+    }
 
     private void Start()
     {
